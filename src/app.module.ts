@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { MovieModule } from './movie/movie.module';
+import { Movie } from './movie/entities/movie.entity';
 // import {UserModule}
 
 @Module({
@@ -15,13 +17,14 @@ import { AuthModule } from './auth/auth.module';
       port: 5432,
       password: 'docker',
       username: 'postgres',
-      entities: [User],
+      entities: [User, Movie],
       database: 'nest-clean',
       synchronize: true,
       logging: false,
     }),
     UserModule,
     AuthModule,
+    MovieModule,
   ],
   controllers: [AppController],
   providers: [AppService],
