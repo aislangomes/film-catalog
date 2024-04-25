@@ -5,15 +5,16 @@ import {
   MinLength,
   IsEmail,
   Matches,
+  IsBoolean,
 } from 'class-validator';
 
 const passwordRegEx =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{6,}$/;
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 export class CreateUserDto {
   @ApiProperty({ example: 'Cesar', description: 'Nome do usuário' })
   @IsString()
-  @MinLength(2, { message: 'Nome precisa de pelo menos 5 letras' })
+  @MinLength(2, { message: 'Nome precisa de pelo menos 2 letras' })
   @IsNotEmpty()
   name: string;
 
@@ -39,17 +40,17 @@ export class CreateUserDto {
   @IsNotEmpty()
   @Matches(passwordRegEx, {
     message: `
-    Senha precisa conter:
-    - Mínimo de 8 caracteres.
-    - Uma letra maiuscula.
-    - Uma letra minuscula.
-    - Um número.
-    - Um caractere especial.
-     `,
+    A senha deve conter:
+    - Pelo menos 8 caracteres.
+    - Pelo menos uma letra maiúscula.
+    - Pelo menos uma letra minúscula.
+    - Pelo menos um número.
+    - Pelo menos um caractere especial (@$!%*?&).
+    `,
   })
   password: string;
 
   @ApiProperty({ description: 'Administradores tem acesso total a aplicaçã' })
-  @IsNotEmpty()
+  @IsBoolean()
   admin: boolean = false;
 }

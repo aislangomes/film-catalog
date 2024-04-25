@@ -1,0 +1,8 @@
+Validação da senha na hora de criar usuário com problema.
+redis
+Secrete do .env não roda no autenticador
+Variaveis do postman
+deploy
+Deslogar o token
+Valor default da request caso va vazio
+revisão do swagger

@@ -7,11 +7,13 @@ import { User } from './user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { MovieModule } from './movie/movie.module';
 import { Movie } from './movie/entities/movie.entity';
+import { ConfigModule } from '@nestjs/config';
 // import { Redis } from 'ioredis';
 // import {UserModule}
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',

@@ -20,4 +20,16 @@ export class AuthService {
       acess_token: await this.jwtService.signAsync(payload),
     };
   }
+
+  // async logout(email: string) {
+  //   const user = await this.userService.findOneByEmail(email);
+  //   if (!user) {
+  //     throw new UnauthorizedException({ message: 'Usuário inválido' });
+  //   }
+  //   const payload = { id: user.id, username: user.name, email: user.email };
+  //   return {
+  //     info: payload,
+  //     acess_token: await this.jwtService.(payload),
+  //   };
+  // }
 }

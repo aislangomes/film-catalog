@@ -1,10 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Public } from 'src/auth/decorators/public.decorator';
 
 @Injectable()
 export class UserService {
@@ -12,13 +11,21 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto): Promise<User> {
-    const user: User = new User();
-    user.name = createUserDto.name;
-    user.email = createUserDto.email;
-    user.password = createUserDto.password;
-    user.admin = createUserDto.admin;
-    return this.userRepository.save(user);
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const { name, email, password, admin = false } = createUserDto;
+
+    const newUser = this.userRepository.create({
+      name,
+      email,
+      password,
+      admin,
+    });
+
+    try {
+      return await this.userRepository.save(newUser);
+    } catch (error) {
+      throw new BadRequestException('Erro ao criar usuário.');
+    }
   }
 
   findAll(): Promise<User[]> {
