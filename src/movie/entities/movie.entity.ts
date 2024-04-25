@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   CreateDateColumn,
@@ -7,18 +8,23 @@ import {
 
 @Entity()
 export class Movie {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty()
   @Column()
   title: string;
 
+  @ApiProperty()
   @Column()
   year: string;
 
-  @Column()
+  @ApiProperty()
+  @Column({ default: 'sem descrição' })
   description: string;
 
+  @ApiProperty()
   @CreateDateColumn({ type: 'timestamptz' })
   created_at: Date;
 }

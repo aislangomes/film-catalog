@@ -7,6 +7,7 @@ import { User } from './user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { MovieModule } from './movie/movie.module';
 import { Movie } from './movie/entities/movie.entity';
+// import { Redis } from 'ioredis';
 // import {UserModule}
 
 @Module({
@@ -27,6 +28,18 @@ import { Movie } from './movie/entities/movie.entity';
     MovieModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    // {
+    //   provide: 'REDIS_CLIENT',
+    //   useFactory: () => {
+    //     return new Redis({
+    //       host: 'localhost',
+    //       port: 6379,
+    //     });
+    //   },
+    // },
+  ],
+  // exports: ['REDIS_CLIENT'],
 })
 export class AppModule {}

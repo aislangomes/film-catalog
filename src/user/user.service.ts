@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Public } from 'src/auth/decorators/public.decorator';
 
 @Injectable()
 export class UserService {
@@ -17,7 +18,6 @@ export class UserService {
     user.email = createUserDto.email;
     user.password = createUserDto.password;
     user.admin = createUserDto.admin;
-
     return this.userRepository.save(user);
   }
 
@@ -29,8 +29,8 @@ export class UserService {
     return this.userRepository.findOneBy({ id });
   }
 
-  findOneByName(name: string): Promise<User> {
-    return this.userRepository.findOneBy({ name });
+  findOneByEmail(email: string): Promise<User> {
+    return this.userRepository.findOneBy({ email });
   }
 
   update(id: number, updateUserDto: UpdateUserDto): Promise<User> {

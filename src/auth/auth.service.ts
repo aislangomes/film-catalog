@@ -9,13 +9,14 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async singIn(name: string, pass: string): Promise<{ acess_token: string }> {
-    const user = await this.userService.findOneByName(name);
+  async singIn(email: string, pass: string) {
+    const user = await this.userService.findOneByEmail(email);
     if (user?.password !== pass) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException({ message: 'Email ou senha inválido' });
     }
-    const payload = { sub: user.id, username: user.name };
+    const payload = { id: user.id, username: user.name, email: user.email };
     return {
+      info: payload,
       acess_token: await this.jwtService.signAsync(payload),
     };
   }
