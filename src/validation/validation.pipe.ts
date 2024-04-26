@@ -7,6 +7,8 @@ import {
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 
+type CustomType = string | boolean | number | Array<any> | Record<string, any>;
+
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {
   async transform(value: any, { metatype }: ArgumentMetadata) {
@@ -21,8 +23,8 @@ export class ValidationPipe implements PipeTransform<any> {
     return value;
   }
 
-  private toValidate(metatype: Function): boolean {
-    const types: Function[] = [String, Boolean, Number, Array, Object];
+  private toValidate(metatype: CustomType): boolean {
+    const types: CustomType[] = [String, Boolean, Number, Array, Object];
     return !types.includes(metatype);
   }
 }

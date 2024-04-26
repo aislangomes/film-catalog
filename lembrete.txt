@@ -1,8 +1,0 @@
-redis
-Secrete do .env não roda no autenticador
-Variaveis do postman
-Deslogar o token
-
-deploy
-Valor default da request caso va vazio
-revisão do swagger
