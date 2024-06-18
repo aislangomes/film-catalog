@@ -50,12 +50,3 @@ http://localhost:3000/api
 https://www.postman.com/spaceflight-administrator-93564984/workspace/film-catalog/collection/31557376-963a9794-7631-4017-87fe-c64347f11e38?action=share&creator=31557376&active-environment=31557376-c04ade88-9eb7-4ef5-a50e-9d4e28bb2e1d
 
 Ao realizar o login precisa copiar o token usa-lo na viarevel de ambient "film-catalog"
-
-## Infos ao recrutador
-
-- Docker já uso a mais de 6 meses.
-- Redis foi a primeira vez.
-- NestJS foi minha primeira API com eu já tinah feito alguns projetos usando apenas o express.js.
-- Swagger foi minha segunda vez utilizando e foi em menos de 1 mês.
-- TypeORM foi a primeira vez eu tinha feito apenas projetos com Prisma.
-- TypeScript e PostgresSQL já uso a pelo menos 1 ano.
